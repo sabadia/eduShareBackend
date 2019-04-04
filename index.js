@@ -30,5 +30,6 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/api', courseRouter);
+app.use('/', (req, res, next) => res.send('eduShare backend working'));
 
 app.listen(port);
