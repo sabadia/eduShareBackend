@@ -7,7 +7,8 @@ const courseSchema = mongoose.Schema({
       lectureName: { type: String, default: 'demo lecture' },
       lectureBody: { type: String, default: 'demo lecture body' }
     }
-  ]
+  ],
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 module.exports = mongoose.model('Course', courseSchema);

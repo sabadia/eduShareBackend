@@ -1,6 +1,7 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
 const courseRouter = require('./api/routes/courseRoute');
+const userRouter = require('./api/routes/userRoute');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.setHeader(
     'Access-Control-Allow-Methods',
@@ -29,7 +30,9 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use('/api', courseRouter);
+app.use('/api/courses', courseRouter);
+app.use('/api/user', userRouter);
+
 app.use('/', (req, res, next) => res.send('eduShare backend working'));
 
 app.listen(port);
